@@ -1,0 +1,15 @@
+# Ignore everything
+*
+
+# But not these files...
+!.gitignore
+!.zsh
+!.zshrc
+!.aliases
+!bin
+!bin/[^.]*
+!bin/*.sh
+
+
+# ...even if they are in subdirectories
+#!*/

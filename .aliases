@@ -1,0 +1,105 @@
+################################
+# grep aliases
+alias g='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+################################
+
+
+
+################################
+# less' stuff
+
+# highlight support for less (requires source-highlight to be brew installed)
+export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+alias less='less -R'
+
+# some ls aliases
+alias ls='ls -G' # color, the GNU way. The BSD way (non-GNU coreutils) is 'ls -G'
+alias ll='ls -alFG'
+alias la='ls -AG'
+alias l='ls -CFG'
+################################
+
+
+
+################################
+# Directory navigation
+
+alias ..='cd ..'
+
+# move up directories quickly
+up ()
+{
+  [ "$#" -eq 1 -a "$1" -gt 0 ] || { echo 'Usage: up <number of directories up>'; return 1; }
+
+  up=""
+  for (( i = 1; i <= $1; i++));
+  do 
+    up="$up../"
+  done
+  cd $up 
+}
+
+mkd() {
+  mkdir "$1" &&
+  cd "$1"
+}
+################################
+
+
+
+################################
+# some git aliases
+
+alias hlog='git log --date-order --all --graph --format="%C(green)%H %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
+alias xlog='git log --date-order --graph --format="%C(green)%h %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
+################################
+
+
+
+################################
+# some gradle aliases
+
+alias gr='./gradlew'
+alias gr-b='./gradlew build'
+alias gr-e='./gradlew eclipse'
+alias gr-i='./gradlew idea'
+alias gr-di='./gradlew dependencyInsight --dependency'
+################################
+
+
+
+################################
+# npm
+alias ns='npm start'
+alias ni='npm install'
+################################
+
+
+
+################################
+# search commands
+
+f()   {	find . -iname "*$1*" }
+fll() { find . -name "*$1*" | xargs ls -l }
+
+mdfjh() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' ;}
+################################
+
+
+
+################################
+# commands on list files
+
+fnddups() { cat $@ | sort | uniq -d }
+
+################################
+
+
+
+################################
+# misc
+
+alias c='clear'
+################################
