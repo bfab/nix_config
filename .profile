@@ -36,4 +36,7 @@ if [ -n "${BASH_VERSION}" ]; then
   fi
 fi
 
+# as vim is not reading .vimrc when launched from another tool
+export EDITOR=nano
+
 source ${HOME}/.aliases
