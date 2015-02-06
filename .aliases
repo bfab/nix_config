@@ -50,10 +50,17 @@ mkd() {
 
 
 ################################
-# some git aliases
+# some git/tig aliases
 
 alias hlog='git log --date-order --all --graph --format="%C(green)%H %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
 alias xlog='git log --date-order --graph --format="%C(green)%h %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
+alias g-co='git checkout'
+alias g-cm='git commit'
+alias g-cm-a='git commit --amend'
+alias g-pl='git pull'
+alias g-ps='git push'
+alias g-sh='git show'
+alias t-s='tig status'
 ################################
 
 
