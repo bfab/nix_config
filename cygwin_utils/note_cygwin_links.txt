@@ -1,0 +1,7 @@
+
+create a link to mintty.exe with these parameters:
+C:\cygwin64\bin\mintty.exe /bin/env CHERE_INVOKING=1 /bin/zsh -l -i
+
+Set it to run on a normal window,
+Set it to start in whatever folder you want to be the current folder when you open it.
+
