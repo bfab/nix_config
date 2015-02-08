@@ -40,3 +40,5 @@ fi
 export EDITOR=nano
 
 source ${HOME}/.aliases
+PATH=/cygdrive/c/Program\ Files\ \(x86\)/scala/bin:$PATH
+
