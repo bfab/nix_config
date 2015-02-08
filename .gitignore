@@ -12,6 +12,8 @@
 !bin/[^.]*
 !bin/*.sh
 
+!cygwin_utils/create_installer.sh
+
 
 # ...even if they are in subdirectories
 #!*/
