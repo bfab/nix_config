@@ -9,6 +9,8 @@
 !bin
 !bin/[^.]*
 !bin/*.sh
+!bin/setup
+!bin/setup/*.sh
 
 
 # ...even if they are in subdirectories
