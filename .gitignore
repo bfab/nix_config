@@ -9,7 +9,8 @@
 !bin
 !bin/[^.]*
 !bin/*.sh
-
+!notes
+!notes/*
 
 # ...even if they are in subdirectories
 #!*/
