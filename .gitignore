@@ -11,7 +11,8 @@
 !bin/*.sh
 !bin/setup
 !bin/setup/*.sh
-
+!notes
+!notes/*
 
 # ...even if they are in subdirectories
 #!*/
