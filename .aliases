@@ -136,7 +136,7 @@ jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home }
 jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home }
 
 
-export JAVA_HOME="$HOME/java_home"
+export JAVA_HOME="$JDK_SYMLINK_PATH"
 #relink_java_home
 export PATH=$JDK_SYMLINK_PATH/bin:$PATH
 
