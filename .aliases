@@ -1,4 +1,22 @@
 ################################
+# System-specific configuration
+
+JDK6_HOME=/Library/Java/JavaVirtualMachines/1.6.0_37-b06-434.jdk/Contents/Home/
+JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/
+JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/
+
+################################
+
+
+
+
+
+
+
+
+
+
+################################
 # grep aliases
 alias g='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -107,7 +125,28 @@ fnddups() { cat $@ | sort | uniq -d }
 
 
 ################################
+# Java symlinking
+
+
+JDK_SYMLINK_PATH="${HOME}/java_home"
+
+relink_java_home() { rm -rf "$JDK_SYMLINK_PATH"; ln -s "$JAVA_HOME" "$JDK_SYMLINK_PATH" }
+jdk6() { export JAVA_HOME="$JDK6_HOME"; relink_java_home }
+jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home }
+jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home }
+
+
+export JAVA_HOME="$HOME/java_home"
+#relink_java_home
+export PATH=$JDK_SYMLINK_PATH/bin:$PATH
+
+################################
+
+
+
+################################
 # misc
 
 alias c='clear'
+
 ################################
