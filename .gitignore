@@ -11,8 +11,6 @@
 !bin/*.sh
 !notes
 !notes/*
-!java_home
-!java_home/.gitignore
 
 # ...even if they are in subdirectories
 #!*/
