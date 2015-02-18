@@ -80,6 +80,7 @@ alias g-ps='git push'
 alias g-sh='git show'
 alias g-st='git stash'
 alias g-st-p='git stash pop'
+alias g-mg='git merge'
 
 alias t-s='tig status'
 ################################
