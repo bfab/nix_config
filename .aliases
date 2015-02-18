@@ -78,6 +78,9 @@ alias g-cm-a='git commit --amend'
 alias g-pl='git pull'
 alias g-ps='git push'
 alias g-sh='git show'
+alias g-st='git stash'
+alias g-st-p='git stash pop'
+
 alias t-s='tig status'
 ################################
 
