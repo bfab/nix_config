@@ -1,7 +1,7 @@
 ################################
 # System-specific configuration
 
-JDK6_HOME=/Library/Java/JavaVirtualMachines/1.6.0_37-b06-434.jdk/Contents/Home/
+JDK6_HOME=/Library/Java/JavaVirtualMachines/1.6.0_65-b14-462.jdk/Contents/Home/
 JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/
 JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/
 
@@ -146,6 +146,19 @@ jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home }
 export JAVA_HOME="$JDK_SYMLINK_PATH"
 #relink_java_home
 export PATH=$JDK_SYMLINK_PATH/bin:$PATH
+
+################################
+
+
+
+################################
+# PT-specific
+
+if [ -r ~/.pt.aliases ] ;then
+  source ~/.pt.aliases
+else
+  echo "~/.pt.aliases not found or not readable."
+fi
 
 ################################
 
