@@ -1,0 +1,12 @@
+## Append to the relevant log.properties and replace PACKAGE according to your needs.
+
+
+log4j.appender.devConsoleAppend=org.apache.log4j.ConsoleAppender
+log4j.appender.devConsoleAppend.layout=com.palantir.monitoring.logging.log4j.PalantirPatternLayout
+log4j.appender.devConsoleAppend.threshold=trace
+# check here for patterns: https://logging.apache.org/log4j/1.2/apidocs/org/apache/log4j/PatternLayout.html
+log4j.appender.devConsoleAppend.layout.ConversionPattern=%-5p | %C{1}.%M |  %m%n
+
+
+log4j.    logger.PACKAGE=debug, devConsoleAppend
+log4j.additivity.PACKAGE=false

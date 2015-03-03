@@ -11,10 +11,10 @@
 !bin
 !bin/[^.]*
 !bin/*.sh
-
 !cygwin_utils
 !cygwin_utils/*
-
+!notes
+!notes/*
 
 # ...even if they are in subdirectories
 #!*/

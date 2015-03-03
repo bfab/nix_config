@@ -1,0 +1,2 @@
+#install package control
+https://packagecontrol.io/installation

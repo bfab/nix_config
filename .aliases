@@ -1,4 +1,22 @@
 ################################
+# System-specific configuration
+
+JDK6_HOME=/Library/Java/JavaVirtualMachines/1.6.0_37-b06-434.jdk/Contents/Home/
+JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/
+JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/
+
+################################
+
+
+
+
+
+
+
+
+
+
+################################
 # grep aliases
 alias g='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -50,10 +68,21 @@ mkd() {
 
 
 ################################
-# some git aliases
+# some git/tig aliases
 
 alias hlog='git log --date-order --all --graph --format="%C(green)%H %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
 alias xlog='git log --date-order --graph --format="%C(green)%h %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
+alias g-co='git checkout'
+alias g-cm='git commit'
+alias g-cm-a='git commit --amend'
+alias g-pl='git pull'
+alias g-ps='git push'
+alias g-sh='git show'
+alias g-st='git stash'
+alias g-st-p='git stash pop'
+alias g-mg='git merge'
+
+alias t-s='tig status'
 ################################
 
 
@@ -63,6 +92,7 @@ alias xlog='git log --date-order --graph --format="%C(green)%h %Creset%C(yellow)
 
 alias gr='./gradlew'
 alias gr-b='./gradlew build'
+alias gr-bl='./gradlew build && ls -l build/libs'
 alias gr-e='./gradlew eclipse'
 alias gr-i='./gradlew idea'
 alias gr-di='./gradlew dependencyInsight --dependency'
@@ -82,9 +112,9 @@ alias ni='npm install'
 # search commands
 
 f()   {	find . -iname "*$1*" }
-fll() { find . -name "*$1*" | xargs ls -l }
+fll() { find . -name "*$1*" | xargs ls -ld }
 
-mdfjh() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' ;}
+mdfh() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' ;}
 ################################
 
 
@@ -99,7 +129,28 @@ fnddups() { cat $@ | sort | uniq -d }
 
 
 ################################
+# Java symlinking
+
+
+JDK_SYMLINK_PATH="${HOME}/java_home"
+
+relink_java_home() { rm -rf "$JDK_SYMLINK_PATH"; ln -s "$JAVA_HOME" "$JDK_SYMLINK_PATH" }
+jdk6() { export JAVA_HOME="$JDK6_HOME"; relink_java_home }
+jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home }
+jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home }
+
+
+export JAVA_HOME="$JDK_SYMLINK_PATH"
+#relink_java_home
+export PATH=$JDK_SYMLINK_PATH/bin:$PATH
+
+################################
+
+
+
+################################
 # misc
 
 alias c='clear'
+
 ################################
