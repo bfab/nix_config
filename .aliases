@@ -96,9 +96,11 @@ alias gr-bl='./gradlew build && ls -l build/libs'
 alias gr-e='./gradlew eclipse'
 alias gr-i='./gradlew idea'
 alias gr-di='./gradlew dependencyInsight --dependency'
+alias gr-ob='open build.gradle'
 
 # pt-specific
 alias gr-pv='./gradlew printVersion'
+
 ################################
 
 
@@ -119,6 +121,7 @@ fll() { find . -name "*$1*" | xargs ls -ld }
 
 mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
 mdfx() { PATTERN=$1 ; shift ; mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs $@ "$PATTERN" }
+mag() { mdfx $1 ag }
 ################################
 
 
