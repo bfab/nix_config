@@ -119,6 +119,7 @@ fll() { find . -name "*$1*" | xargs ls -ld }
 
 mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
 mdfx() { PATTERN=$1 ; shift ; mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs $@ "$PATTERN" }
+mag() { mdfx $1 ag }
 ################################
 
 
