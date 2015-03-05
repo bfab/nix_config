@@ -1,0 +1,3 @@
+Something like this (this works fine for https links to pages which have something after the domain):
+
+sed -E 's|(https://).*portal.*.com/(.*/)?,DanaInfo=([^,/]*)(,SSL\+)?(.*)?|\1\3/\2\5|g' <<< $YOUR_LINK_HERE
