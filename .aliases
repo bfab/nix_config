@@ -114,7 +114,8 @@ alias ni='npm install'
 f()   {	find . -iname "*$1*" }
 fll() { find . -name "*$1*" | xargs ls -ld }
 
-mdfh() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' ;}
+mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
+mdfx() { PATTERN=$1 ; shift ; mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs $@ "$PATTERN" }
 ################################
 
 
