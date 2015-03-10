@@ -96,6 +96,7 @@ alias gr-bl='./gradlew build && ls -l build/libs'
 alias gr-e='./gradlew eclipse'
 alias gr-i='./gradlew idea'
 alias gr-di='./gradlew dependencyInsight --dependency'
+alias gr-ob='open build.gradle'
 ################################
 
 
