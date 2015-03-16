@@ -5,6 +5,7 @@
 !.gitignore
 !.zsh
 !.zshrc
+!.profile
 !.aliases
 !bin
 !bin/[^.]*
