@@ -155,18 +155,6 @@ export PATH=$JDK_SYMLINK_PATH/bin:$PATH
 
 
 
-################################
-# PT-specific
-
-if [ -r ~/.pt.aliases ] ;then
-  source ~/.pt.aliases
-else
-  echo "~/.pt.aliases not found or not readable."
-fi
-
-################################
-
-
 
 ################################
 # misc
