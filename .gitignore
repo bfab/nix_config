@@ -6,6 +6,7 @@
 !.zsh
 !.zshrc
 !.profile
+!.zprofile
 !.aliases
 !.vimrc
 !bin
@@ -13,6 +14,8 @@
 !bin/*.sh
 !cygwin_utils
 !cygwin_utils/*
+!bin/setup
+!bin/setup/*.sh
 !notes
 !notes/*
 
