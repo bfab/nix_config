@@ -6,6 +6,7 @@
 !.zsh
 !.zshrc
 !.profile
+!.zprofile
 !.aliases
 !bin
 !bin/[^.]*
