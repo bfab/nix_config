@@ -9,7 +9,8 @@ brew install bash-completion &&
 brew install beecrypt &&
 brew install berkeley-db &&
 brew install bison &&
-brew install boost &&
+brew install bison &&
+brew install blueutil &&
 brew install cgal &&
 brew install cmake &&
 brew install coreutils &&
