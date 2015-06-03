@@ -118,8 +118,8 @@ alias ni='npm install'
 ################################
 # search commands
 
-f()   {	find . -iname "*$1*" }
-fll() { find . -name "*$1*" | xargs ls -ld }
+function f()   {	find . -iname "*$1*"; }
+function fll() { find . -name "*$1*" | xargs ls -ld; }
 
 ################################
 
@@ -128,7 +128,7 @@ fll() { find . -name "*$1*" | xargs ls -ld }
 ################################
 # commands on list files
 
-fnddups() { cat $@ | sort | uniq -d }
+function fnddups() { cat $@ | sort | uniq -d; }
 
 ################################
 
@@ -140,10 +140,10 @@ fnddups() { cat $@ | sort | uniq -d }
 
 JDK_SYMLINK_PATH="${HOME}/java_home"
 
-relink_java_home() { rm -rf "$JDK_SYMLINK_PATH"; ln -s "$JAVA_HOME" "$JDK_SYMLINK_PATH" }
-jdk6() { export JAVA_HOME="$JDK6_HOME"; relink_java_home }
-jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home }
-jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home }
+function relink_java_home() { rm -rf "$JDK_SYMLINK_PATH"; ln -s "$JAVA_HOME" "$JDK_SYMLINK_PATH"; }
+function jdk6() { export JAVA_HOME="$JDK6_HOME"; relink_java_home; }
+function jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home; }
+function jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home; }
 
 
 export JAVA_HOME="$JDK_SYMLINK_PATH"
