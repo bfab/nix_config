@@ -79,6 +79,7 @@ mkd() {
 alias hlog='git log --date-order --all --graph --format="%C(green)%H %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
 alias xlog='git log --date-order --graph --format="%C(green)%h %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
 alias g-co='git checkout'
+alias g-co-pr='git checkout @{-1}'
 alias g-cm='git commit'
 alias g-cm-a='git commit --amend'
 alias g-pl='git pull'
@@ -91,7 +92,7 @@ alias g-mg='git merge'
 g-cherry-to() {
   git checkout "$2" &&
   git cherry-pick "$1" &&
-  git checkout @{-1}
+  g-co-pr
 }
 
 alias t-s='tig status'
