@@ -88,6 +88,12 @@ alias g-st='git stash'
 alias g-st-p='git stash pop'
 alias g-mg='git merge'
 
+g-cherry-to() {
+  git checkout "$2" &&
+  git cherry-pick "$1" &&
+  git checkout @{-1}
+}
+
 alias t-s='tig status'
 ################################
 
