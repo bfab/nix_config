@@ -6,10 +6,13 @@
 !.zsh
 !.zshrc
 !.profile
+!.zprofile
 !.aliases
 !bin
 !bin/[^.]*
 !bin/*.sh
+!bin/setup
+!bin/setup/*.sh
 !notes
 !notes/*
 

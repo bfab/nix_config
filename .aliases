@@ -30,8 +30,14 @@ alias egrep='egrep --color=auto'
 
 # highlight support for less (requires source-highlight to be brew installed)
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
-alias less='less -R'
 
+alias less='less -R'
+alias lesS='less -RS'
+################################
+
+
+
+################################
 # some ls aliases
 alias ls='ls -G' # color, the GNU way. The BSD way (non-GNU coreutils) is 'ls -G'
 alias ll='ls -alFG'
@@ -42,9 +48,10 @@ alias l='ls -CFG'
 
 
 ################################
-# Directory navigation
+# Directory handling
 
 alias ..='cd ..'
+alias rmrf='rm -rf'
 
 # move up directories quickly
 up ()
@@ -71,16 +78,28 @@ mkd() {
 # some git/tig aliases
 
 alias hlog='git log --date-order --all --graph --format="%C(green)%H %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
+function hlogh() { hlog $@ | head; }
+
 alias xlog='git log --date-order --graph --format="%C(green)%h %Creset%C(yellow)%an%Creset %C(blue bold)%ar%Creset %C(red bold)%d%Creset %s"'
+function xlogh() { xlog $@ | head; }
+
 alias g-co='git checkout'
+alias g-co-pr='git checkout @{-1}'
 alias g-cm='git commit'
 alias g-cm-a='git commit --amend'
+alias g-df='git diff --color-words'
 alias g-pl='git pull'
 alias g-ps='git push'
-alias g-sh='git show'
+alias g-sh='git show --color-words'
 alias g-st='git stash'
 alias g-st-p='git stash pop'
 alias g-mg='git merge'
+
+g-cherry-to() {
+  git checkout "$2" &&
+  git cherry-pick "$1" &&
+  g-co-pr
+}
 
 alias t-s='tig status'
 ################################
@@ -90,12 +109,12 @@ alias t-s='tig status'
 ################################
 # some gradle aliases
 
-alias gr='./gradlew'
-alias gr-b='./gradlew build'
-alias gr-bl='./gradlew build && ls -l build/libs'
-alias gr-e='./gradlew eclipse'
-alias gr-i='./gradlew idea'
-alias gr-di='./gradlew dependencyInsight --dependency'
+alias gr='./gradlew --daemon'
+alias gr-b='./gradlew --daemon build'
+alias gr-bl='./gradlew --daemon build && ls -l build/libs'
+alias gr-e='./gradlew --daemon eclipse'
+alias gr-i='./gradlew --daemon idea'
+alias gr-di='./gradlew --daemon dependencyInsight --dependency'
 alias gr-ob='open build.gradle'
 ################################
 
@@ -112,8 +131,8 @@ alias ni='npm install'
 ################################
 # search commands
 
-f()   {	find . -iname "*$1*" }
-fll() { find . -name "*$1*" | xargs ls -ld }
+function f()   {	find . -iname "*$1*"; }
+function fll() { find . -name "*$1*" | xargs ls -ld; }
 
 mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
 mdfx() { PATTERN=$1 ; shift ; mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs $@ "$PATTERN" }
@@ -125,7 +144,7 @@ mag() { mdfx $1 ag }
 ################################
 # commands on list files
 
-fnddups() { cat $@ | sort | uniq -d }
+function fnddups() { cat $@ | sort | uniq -d; }
 
 ################################
 
@@ -137,10 +156,10 @@ fnddups() { cat $@ | sort | uniq -d }
 
 JDK_SYMLINK_PATH="${HOME}/java_home"
 
-relink_java_home() { rm -rf "$JDK_SYMLINK_PATH"; ln -s "$JAVA_HOME" "$JDK_SYMLINK_PATH" }
-jdk6() { export JAVA_HOME="$JDK6_HOME"; relink_java_home }
-jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home }
-jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home }
+function relink_java_home() { rm -rf "$JDK_SYMLINK_PATH"; ln -s "$JAVA_HOME" "$JDK_SYMLINK_PATH"; }
+function jdk6() { export JAVA_HOME="$JDK6_HOME"; relink_java_home; }
+function jdk7() { export JAVA_HOME="$JDK7_HOME"; relink_java_home; }
+function jdk8() { export JAVA_HOME="$JDK8_HOME"; relink_java_home; }
 
 
 export JAVA_HOME="$JDK_SYMLINK_PATH"
@@ -155,6 +174,8 @@ export PATH=$JDK_SYMLINK_PATH/bin:$PATH
 # misc
 
 alias c='clear'
+
+alias notify='tput setab 2 && for i in $(eval echo "{1..$(tput cols)}") ;do echo -n " "; done; tput sgr0'
 
 # Utility function to make random passwords
 # from http://www.cyberciti.biz/faq/linux-random-password-generator/
