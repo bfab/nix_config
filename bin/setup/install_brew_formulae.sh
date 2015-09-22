@@ -66,6 +66,7 @@ brew install node &&
 brew install openssl &&
 brew install ossp-uuid &&
 brew install p7zip &&
+brew install pandoc &&
 brew install pcre &&
 brew install pkg-config &&
 brew install popt &&
