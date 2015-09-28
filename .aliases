@@ -177,6 +177,8 @@ alias c='clear'
 
 alias notify='tput setab 2 && for i in $(eval echo "{1..$(tput cols)}") ;do echo -n " "; done; tput sgr0'
 
+alias dutop='du --max-depth 1 | sort -nr | head | cut -f 2 | xargs du -h --max-depth 0'
+
 # Utility function to make random passwords
 # from http://www.cyberciti.biz/faq/linux-random-password-generator/
 genpasswd() {
