@@ -188,7 +188,7 @@ genpasswd() {
   if [[ $len == "" ]]; then
     len=16
   fi
-  tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${len} | xargs
+  bash -c 'LC_CTYPE=C tr -dc "[:upper:][:lower:][:digit:]_" < /dev/urandom | head -c ${len} | xargs'
 }
 
 # Utility function to open the specified port
