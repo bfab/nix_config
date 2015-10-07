@@ -4,7 +4,8 @@ PATH_SUBSTR=$1
 DEFAULT_OPEN_CMD=open
 
 FIND_CMD="find -L . -name \"*$PATH_SUBSTR*\""
-OPEN_CMD=${2:-"$DEFAULT_OPEN_CMD"}
+shift
+OPEN_CMD=${@:-"$DEFAULT_OPEN_CMD"}
 
 NUM_MATCHES=`eval $FIND_CMD | wc -l`
 if (( $NUM_MATCHES > 1 )) ;then
