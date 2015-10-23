@@ -178,6 +178,8 @@ alias dutop='du --max-depth 1 | sort -nr | head | cut -f 2 | xargs du -h --max-d
 
 alias wg='wget --no-check-certificate'
 
+alias webserve='python -m SimpleHTTPServer'
+
 # Utility function to make random passwords
 # from http://www.cyberciti.biz/faq/linux-random-password-generator/
 genpasswd() {
