@@ -4,6 +4,9 @@
 # But not these files...
 !.gitignore
 !.vimrc
+!.vim
+!.vim/ftdetect
+!.vim/ftdetect/*
 !.zsh
 !.zshrc
 !.profile
