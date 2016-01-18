@@ -14,10 +14,8 @@ append_generator_for() {
 
 # deals with linux/osx differences 
 if [ `uname` = "Darwin" ] ; then
-  MIME_FLAG=I
   MD5_GENERATOR=md5
 else
-  MIME_FLAG=i
   MD5_GENERATOR=md5sum
 fi
 
@@ -28,7 +26,7 @@ DELIMITER=END_OF_FILE_MARKER_$RANDOM_STRING
 BACKTICK_PLACEHOLDER=BACKTICK_$RANDOM_STRING
 
 #find all text files in working directory
-TEXT_FILES=`ls -a | xargs file -$MIME_FLAG | sed -n 's|\(.*\): *text/.*|./\1|p'`
+TEXT_FILES=`ls -a | xargs file --mime | sed -n 's|\(.*\): *text/.*|./\1|p'`
 
 
 
