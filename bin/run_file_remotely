@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e
+
+
+print_usage_and_exit() {
+	echo -e "\nUsage: `basename $0` <file_to_run> <remote_path_to_run_it_from> <user_1>@<host_1> ... <user_n>@<host_n>"
+	exit 1
+}
+
+parse_params() {
+	[ $# -gt 2 ] || print_usage_and_exit
+
+	COMMAND="$1"
+	shift
+	FOLDER="$1"
+	shift
+	HOSTS=$*
+}
+
+run_command_on_hosts() {
+
+	for HOST in $HOSTS ;do
+
+		local COMMAND_HOST_MSG="'$COMMAND' on $HOST"
+
+		echo "copying $COMMAND_HOST_MSG in $FOLDER..."
+		scp "$COMMAND" ${HOST}:"$FOLDER"
+		echo -e "copied $COMMAND_HOST_MSG\n"
+
+		echo "running $COMMAND_HOST_MSG..."
+		
+		ssh $HOST "cd $FOLDER && chmod +x $COMMAND && ./$COMMAND" || { echo "$COMMAND_HOST_MSG failed."; exit 2; }
+		
+		echo -e "$COMMAND on $HOST succeeded\n"
+	done
+}
+
+#note: quoting here is important to avoid parameters being split on spaces
+parse_params "$@"
+
+run_command_on_hosts
