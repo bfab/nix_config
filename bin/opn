@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PATH_SUBSTR=$1
-DEFAULT_OPEN_CMD=open
+DEFAULT_OPEN_CMD=vim
 
 FIND_CMD="find -L . -name \"*$PATH_SUBSTR*\""
 shift
