@@ -30,9 +30,9 @@ alias egrep='egrep --color=auto'
 
 # highlight support for less (requires source-highlight to be brew installed)
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
+export LESS=' -R '
 
-alias less='less -R'
-alias lesS='less -RS'
+alias lesS='less -S'
 ################################
 
 
