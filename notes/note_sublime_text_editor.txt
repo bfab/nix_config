@@ -1,2 +1,5 @@
 #install package control
 https://packagecontrol.io/installation
+
+#install these packages:
+AlignTab (https://github.com/randy3k/AlignTab)
