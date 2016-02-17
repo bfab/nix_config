@@ -101,6 +101,18 @@ g-cherry-to() {
   g-co-pr
 }
 
+g-cpick-last-to() {
+  local TARGET_BRANCH="$1"
+  local LAST_HASH=`git log --date-order --format="%H" | head -n 1`
+  local LAST_SUBJ="`git log --date-order --format="%s" | head -n 1`"
+
+  g-cherry-to $LAST_HASH "$TARGET_BRANCH"
+  local RESULT=$?
+  
+  [ $RESULT ] && echo -e "\n Cherry-picked commit \033[0;32m $LAST_SUBJ \033[0m to branch \033[0;32m $TARGET_BRANCH\033[0m\n"
+  return $RESULT
+}
+
 alias t-s='tig status'
 ################################
 
