@@ -151,7 +151,14 @@ function f()   {	find . -iname "*$1*"; }
 function fll() { find . -name "*$1*" | xargs ls -ld; }
 
 mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
-mdfx() { PATTERN=$1 ; shift ; mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs $@ "$PATTERN" }
+mdfx() { 
+  PATTERN=$1 ; shift
+  if [ $# -gt 0 ]; then
+    mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs $@
+  else
+    mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs open
+  fi
+}
 mag() { mdfx $1 ag }
 ################################
 
