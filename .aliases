@@ -159,7 +159,7 @@ mdfx() {
     mdfind -onlyin . 'kMDItemTextContent == "'$PATTERN'"' | xargs open
   fi
 }
-mag() { mdfx $1 ag }
+mag() { mdfx $1 ag $1 }
 ################################
 
 
