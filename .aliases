@@ -32,7 +32,7 @@ alias egrep='egrep --color=auto'
 export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
-alias lesS='less -S'
+alias les='less -S'
 ################################
 
 
