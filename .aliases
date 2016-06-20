@@ -148,7 +148,7 @@ alias ni='npm install'
 # search commands
 
 function f()   {	find . -iname "*$1*"; }
-function fll() { find . -name "*$1*" | xargs ls -ld; }
+function fll() { find . -name "*$1*" -print0 | xargs -0 ls -ld; }
 
 mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
 mdfx() { 
