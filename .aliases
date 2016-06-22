@@ -227,7 +227,14 @@ print_bar() {
 }
 
 notify() {
+  local TITLE="$1"
+  local BODY="$2"
+  local SOUND=/System/Library/Sounds/Ping.aiff
+
   print_bar
+
+  /usr/bin/osascript -e "display notification \"$BODY\" with title \"$TITLE\""
+  /usr/bin/afplay "$SOUND" # it should be able to append just ' sound name \"Ping\"' to the command above, but it doesn't work.
 }
 
 alias dutop='du -d 1 | sort -nr | head | cut -f 2 | xargs -I Q du -h -d 0 Q'
