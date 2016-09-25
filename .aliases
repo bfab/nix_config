@@ -2,8 +2,8 @@
 # System-specific configuration
 
 JDK6_HOME=/Library/Java/JavaVirtualMachines/1.6.0_65-b14-462.jdk/Contents/Home/
-JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/
-JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_11.jdk/Contents/Home/
+JDK7_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_71.jdk/Contents/Home/
+JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/
 
 ################################
 
@@ -218,7 +218,24 @@ alias webserve='python -m SimpleHTTPServer'
 
 alias c='clear'
 
-alias notify='tput setab 2 && for i in $(eval echo "{1..$(tput cols)}") ;do echo -n " "; done; tput sgr0'
+print_bar() {
+  tput setab 2 &&
+  for i in $(eval echo "{1..$(tput cols)}") ;do
+    echo -n " "
+  done
+  tput sgr0
+}
+
+notify() {
+  local TITLE="$1"
+  local BODY="$2"
+  local SOUND=/System/Library/Sounds/Ping.aiff
+
+  print_bar
+
+  /usr/bin/osascript -e "display notification \"$BODY\" with title \"$TITLE\""
+  /usr/bin/afplay "$SOUND" # it should be able to append just ' sound name \"Ping\"' to the command above, but it doesn't work.
+}
 
 alias dutop='du -d 1 | sort -nr | head | cut -f 2 | xargs -I Q du -h -d 0 Q'
 
@@ -238,6 +255,21 @@ genpasswd() {
 openport() {
   echo sudo iptables -A INPUT -p tcp --dport $1 -j ACCEPT
   sudo iptables -A INPUT -p tcp --dport $1 -j ACCEPT
+}
+
+sleep2() {
+  SECS=$1
+  while (( $SECS > 0 )) ;do
+    echo -ne "countdown: $SECS seconds\033[O\r" >&2
+    sleep 1
+    (( SECS-- ))
+  done
+}
+
+my_backup() {
+  echo "Running   rsync -av --delete --progress \"$1\" \"$2\""
+  echo ...
+  rsync -av --delete --progress "$1" "$2"
 }
 
 ################################
