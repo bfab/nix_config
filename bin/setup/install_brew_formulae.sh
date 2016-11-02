@@ -74,6 +74,7 @@ brew install postgis &&
 brew install postgresql &&
 brew install proj &&
 brew install readline &&
+brew install rlwrap &&
 brew install rpm &&
 brew install rpm2cpio &&
 brew install ruby &&
