@@ -273,4 +273,8 @@ my_backup() {
   rsync -av --delete --progress "$1" "$2"
 }
 
+shacheck() {
+  cat "$1.sha1" && echo && shasum "$1"
+}
+
 ################################
