@@ -259,6 +259,10 @@ my_backup() {
   rsync -av --delete --progress "$1" "$2"
 }
 
+shacheck() {
+  cat "$1.sha1" && echo && sha1sum "$1"
+}
+
 opn () {
   local PATH_SUBSTR=$1
   local DEFAULT_OPEN_CMD=vim
