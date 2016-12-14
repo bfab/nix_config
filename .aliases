@@ -286,4 +286,6 @@ shacheck() {
   cat "$1.sha1" && echo && shasum "$1"
 }
 
+alias strace=dtruss
+
 ################################
