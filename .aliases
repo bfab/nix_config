@@ -33,6 +33,8 @@ export LESSOPEN="| /usr/local/bin/src-hilite-lesspipe.sh %s"
 export LESS=' -R '
 
 alias les='less -S'
+
+lest () { for f in `ls -tAp1 | grep -v "/$" | head -n ${1:-1}` ;do less -S "$f" ;done ; }
 ################################
 
 
