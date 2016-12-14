@@ -45,6 +45,13 @@ alias ls='ls -G' # color, the GNU way. The BSD way (non-GNU coreutils) is 'ls -G
 alias ll='ls -alFG'
 alias la='ls -AG'
 alias l='ls -CFG'
+llth () {
+  [ -z "$1" ] && {
+    ll -t      | head -n 20
+  } || {
+    ll -t "$1" | head -n 20
+  }
+}
 ################################
 
 
