@@ -288,11 +288,9 @@ shacheck() {
 
 alias strace=dtruss
 
-opn () {
-  local PATH_SUBSTR=$1
+__opn_internal () {
+  local FIND_CMD="$1"
   local DEFAULT_OPEN_CMD=vim
-
-  local FIND_CMD="find -L . -name \"*$PATH_SUBSTR*\""
   shift
   local OPEN_CMD=${@:-"$DEFAULT_OPEN_CMD"}
 
@@ -325,9 +323,15 @@ opn () {
   $OPEN_CMD "$MATCH"
 }
 
+opn () {
+  local PATH_SUBSTR=$1
+  shift
+  __opn_internal "find -L . -name \"*$PATH_SUBSTR*\"" $@
+}
+
 opcd () {
   local PATH_SUBSTR=$1
   shift
-  opn "$PATH_SUBSTR" cd $@
+  __opn_internal "find -L . -maxdepth 1 -name \"*$PATH_SUBSTR*\" -type d" cd $@
 }
 ################################
