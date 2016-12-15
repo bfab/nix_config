@@ -263,6 +263,8 @@ shacheck() {
   cat "$1.sha1" && echo && sha1sum "$1"
 }
 
+alias strace=dtruss
+
 opn () {
   local PATH_SUBSTR=$1
   local DEFAULT_OPEN_CMD=vim
