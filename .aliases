@@ -293,8 +293,7 @@ __opn_internal () {
   local DEFAULT_OPEN_CMD=vim
   shift
   local OPEN_CMD=${@:-"$DEFAULT_OPEN_CMD"}
-
-  local NUM_MATCHES=`eval $FIND_CMD | wc -l`
+  local NUM_MATCHES=`eval $FIND_CMD | wc -l | egrep -o '\d+'`
   if (( $NUM_MATCHES > 1 )) ;then
     echo Multiple results, pick one:
     echo
@@ -306,7 +305,12 @@ __opn_internal () {
     done
     echo
     echo
-    read -p "pick a number: "
+    local SHELL=`ps -p $$ | tail -1| awk '{print $NF}' | sed -e "s/^-//"`
+    if [ $SHELL = 'zsh' ] ;then
+      read "?pick a number: "
+    else
+      read -p "pick a number: "
+    fi
     local SELECTED_INDEX=$REPLY
 
     local I=0
