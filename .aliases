@@ -104,6 +104,14 @@ alias g-st='git stash'
 alias g-st-p='git stash pop'
 alias g-mg='git merge'
 
+g-cl() {
+  local REPO_URL="$1"
+  local REPO_BASENAME=`echo $REPO_URL | egrep -o '[^/.]*\.git$' | egrep -o '^[^.]*'`
+  local FOLDER="${2:-$REPO_BASENAME}"
+
+  git clone "$REPO_URL" "$FOLDER" && cd "$FOLDER"
+}
+
 g-cherry-to() {
   git checkout "$2" &&
   git cherry-pick "$1" &&
