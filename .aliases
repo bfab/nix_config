@@ -290,7 +290,7 @@ alias strace=dtruss
 
 __opn_internal () {
   local FIND_CMD="$1"
-  local DEFAULT_OPEN_CMD=vim
+  local DEFAULT_OPEN_CMD=subl
   shift
   local OPEN_CMD=${@:-"$DEFAULT_OPEN_CMD"}
   local NUM_MATCHES=`eval $FIND_CMD | wc -l | egrep -o '\d+'`
