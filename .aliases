@@ -278,7 +278,7 @@ __opn_internal () {
   local DEFAULT_OPEN_CMD=vim
   shift
   local OPEN_CMD=${@:-"$DEFAULT_OPEN_CMD"}
-  local NUM_MATCHES=`eval $FIND_CMD | wc -l | egrep -o '\d+'`
+  local NUM_MATCHES=`eval $FIND_CMD | wc -l | egrep -o '[0-9]+'`
   if (( $NUM_MATCHES > 1 )) ;then
     echo Multiple results, pick one:
     echo
