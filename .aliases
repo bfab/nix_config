@@ -21,6 +21,12 @@ JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/
 alias g='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+
+histogram() {
+  local GREP_EXPR="$1"
+  shift
+  grep -h "$GREP_EXPR" $* | sort | uniq -c | sort -nr
+}
 ################################
 
 
