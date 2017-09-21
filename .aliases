@@ -279,6 +279,12 @@ shacheck() {
 
 alias strace=dtruss
 
+subl () {
+  local DOS_PATH="`cygpath -d \"$1\"`"
+  local SUBLIME_EXE_PATH="/cygdrive/c/Program Files/Sublime Text 3/sublime_text.exe"
+  "$SUBLIME_EXE_PATH" "$DOS_PATH"
+}
+
 __opn_internal () {
   local FIND_CMD="$1"
   local DEFAULT_OPEN_CMD=vim
