@@ -333,4 +333,16 @@ opcd () {
   shift
   __opn_internal "find -L . -maxdepth 1 -name \"*$PATH_SUBSTR*\" -type d" cd $@
 }
+
+check_port () {
+  local PORT=$1
+  echo
+  nc -z localhost $PORT && {
+    echo This process is listening on $PORT:
+    echo
+    lsof -i -P | grep $PORT.*LISTEN
+  } ||
+    echo Nothing is listening on $PORT
+  echo
+}
 ################################
