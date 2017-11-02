@@ -18,11 +18,11 @@ parse_params() {
 run_command_on_hosts() {
 
     for TARGET in $CMD_TARGETS ;do
-    	echo "\n> Running\n> \n>   $COMMAND\n> \n> as $TARGET ; you may be asked for a password...\n" 
+    	echo -e "\n> Running\n> \n>   $COMMAND\n> \n> as $TARGET ; you may be asked for a password...\n" 
         ssh $TARGET "$COMMAND"
     done
 
-    echo "\n> All done!"
+    echo -e "\n> All done!"
 }
 
 #note: quoting here is important to avoid parameters being split on spaces
