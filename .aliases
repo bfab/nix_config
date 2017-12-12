@@ -317,7 +317,7 @@ shacheck() {
 
 md5all() {
   local FILES=`find . -type f | sort`
-  which -s md5 && local MD5=md5 || local MD5=md5sum
+  which md5 >/dev/null 2>&1 && local MD5=md5 || local MD5=md5sum
 
   echo "md5 on file list (didn't check content) = `echo $FILES | $MD5`"
 
