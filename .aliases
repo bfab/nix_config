@@ -13,7 +13,24 @@ JDK8_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home/
 
 
 
+################################
+# general helper functions
 
+__ask_and_return() {
+  local PROMPT_STRING="$1"
+  local RETURN_PARAM="$2"
+  
+  local SHELL=`ps -p $$ | tail -1| awk '{print $NF}' | sed -e "s/^-//"`
+
+  if [ $SHELL = 'zsh' ] ;then
+    read "?$PROMPT_STRING"
+  else
+    read -p "$PROMPT_STRING"
+  fi
+
+  eval $RETURN_PARAM="$REPLY"
+}
+################################
 
 
 ################################
@@ -298,6 +315,28 @@ shacheck() {
   cat "$1.sha1" && echo && shasum "$1"
 }
 
+md5all() {
+  local FILES=`find . -type f | sort`
+  which -s md5 && local MD5=md5 || local MD5=md5sum
+
+  echo "md5 on file list (didn't check content) = `echo $FILES | $MD5`"
+
+  __ask_and_return "continue? [default = y] :" REPLY
+  REPLY=${REPLY:-"y"}
+  if [ $REPLY = "y" ] || [ $REPLY = "Y" ] ;then
+    echo
+    echo "computing individual and recursive md5 checksums:"
+
+    local OIFS="$IFS"
+    IFS=$'\n'  
+    local EACH_FILE_WITH_MD5=`for FILE in $(echo $FILES) ;do echo "$($MD5 "$FILE")";done`
+    IFS=$OIFS
+    echo $EACH_FILE_WITH_MD5
+    echo
+    echo "all-content-only md5 = `echo $EACH_FILE_WITH_MD5 | egrep -o ") = .*" | $MD5`"
+  fi
+}
+
 alias strace=dtruss
 
 __opn_internal () {
@@ -317,13 +356,7 @@ __opn_internal () {
     done
     echo
     echo
-    local SHELL=`ps -p $$ | tail -1| awk '{print $NF}' | sed -e "s/^-//"`
-    if [ $SHELL = 'zsh' ] ;then
-      read "?pick a number: "
-    else
-      read -p "pick a number: "
-    fi
-    local SELECTED_INDEX=$REPLY
+    __ask_and_return "pick a number: " SELECTED_INDEX
 
     local I=0
     for MATCH_I in `eval $FIND_CMD` ;do
