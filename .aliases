@@ -297,11 +297,18 @@ openport() {
 }
 
 sleep2() {
-  SECS=$1
-  while (( $SECS > 0 )) ;do
-    echo -ne "countdown: $SECS seconds\033[O\r" >&2
+  TOT_SECS=$1
+  while (( $TOT_SECS > 0 )) ;do
+    HOURS=$(( TOT_SECS / 3600 ))
+    HOURS_2CH=$(( HOURS / 10 ))$(( HOURS % 10 ))
+    MINS=$(( TOT_SECS % 3600 / 60))
+    MINS_2CH=$(( MINS / 10 ))$(( MINS % 10 ))
+    SECS=$(( TOT_SECS % 60))
+    SECS_2CH=$(( SECS / 10 ))$(( SECS % 10 ))
+
+    echo -ne "countdown: $HOURS_2CH:$MINS_2CH:$SECS_2CH \033[O\r" >&2
     sleep 1
-    (( SECS-- ))
+    (( TOT_SECS-- ))
   done
 }
 
