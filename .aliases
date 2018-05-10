@@ -181,8 +181,13 @@ alias ni='npm install'
 ################################
 # search commands
 
-function f()   {	find . -iname "*$1*"; }
-function fll() { find . -iname "*$1*" -exec ls -ld {} \; ; }
+function __f_args() {
+  local ARG="$1"
+  [[ "$ARG" = *$ ]] && local ARG=`echo "$ARG" | sed -e "s/\(.*\)./\1/"` || local ARG="$ARG*"
+  echo "*$ARG"
+}
+function f()   { find . -iname `__f_args "$1"`; }
+function fll() { find . -iname `__f_args "$1"` -exec ls -ld {} \; ; }
 
 mdf() { mdfind -onlyin . 'kMDItemTextContent == "'$1'"' }
 mdfx() { 
