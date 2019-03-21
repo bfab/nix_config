@@ -1,4 +1,7 @@
 #!/bin/bash
+#
+# Generates a file that regenerates all text files originally found in the folder
+#
 
 append_generator_for() {
   local file=$1
