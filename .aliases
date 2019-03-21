@@ -184,11 +184,12 @@ alias ni='npm install'
 
 function __f_args() {
   local ARG="$1"
+  [[ "$ARG" = ^* ]] && local ARG=`echo "$ARG" | sed -e "s/.\(.*\)/\1/"` || local ARG="*$ARG" 
   [[ "$ARG" = *$ ]] && local ARG=`echo "$ARG" | sed -e "s/\(.*\)./\1/"` || local ARG="$ARG*"
   echo "*$ARG"
 }
-function f()   { find . -iname `__f_args "$1"`; }
-function fll() { find . -iname `__f_args "$1"` -exec ls -ld {} \; ; }
+function f()   { find . -iname "`__f_args "$1"`"; }
+function fll() { find . -iname "`__f_args "$1"`" -exec ls -ld {} \; ; }
 
 ################################
 
