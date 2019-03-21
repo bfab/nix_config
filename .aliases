@@ -160,12 +160,12 @@ alias t-s='tig status'
 ################################
 # some gradle aliases
 
-alias gr='./gradlew --daemon'
-alias gr-b='./gradlew --daemon build'
-alias gr-bl='./gradlew --daemon build && ls -l build/libs'
-alias gr-e='./gradlew --daemon eclipse'
-alias gr-i='./gradlew --daemon idea'
-alias gr-di='./gradlew --daemon dependencyInsight --dependency'
+alias gr='./gradlew'
+alias gr-b='./gradlew build'
+alias gr-bl='./gradlew build && ls -l build/libs'
+alias gr-e='./gradlew eclipse'
+alias gr-i='./gradlew idea'
+alias gr-di='./gradlew dependencyInsight --dependency'
 alias gr-ob='open build.gradle'
 
 # pt-specific
