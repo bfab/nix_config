@@ -594,3 +594,4 @@ function cd() {
   builtin cd "$*" && ls
 }
 
+export PATH="/usr/local/opt/openssl/bin:$PATH"
