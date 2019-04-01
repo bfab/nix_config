@@ -361,6 +361,9 @@ __opn_internal_replacing_MATCH () {
   shift
   local OPEN_CMD=${@:-"$DEFAULT_OPEN_CMD"}
 
+  local OLD_IFS=$OLD_IFS
+  IFS=$'\n'
+
   local NUM_MATCHES=`eval $FIND_CMD | wc -l | egrep -o '[0-9]+'`
   if (( $NUM_MATCHES > 1 )) ;then
     echo Multiple results, pick one:
@@ -382,9 +385,14 @@ __opn_internal_replacing_MATCH () {
           local MATCH=$MATCH_I
       fi
     done
-  else
+  elif (( $NUM_MATCHES > 0 )) ;then
     local MATCH=`eval $FIND_CMD`
+  else
+    echo "No match found running '$FIND_CMD'"
+    IFS=$OLD_IFS
+    return 1
   fi
+  IFS=$OLD_IFS
   local INTERPRETED_CMD=`eval "echo $OPEN_CMD"`
   echo "Running $INTERPRETED_CMD"
   eval $INTERPRETED_CMD
