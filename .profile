@@ -23,8 +23,6 @@
 
 # User dependent .profile file
 
-# Set user-defined locale
-export LANG=$(locale -uU)
 
 # This file is not read by bash(1) if ~/.bash_profile or ~/.bash_login
 # exists.
@@ -40,5 +38,3 @@ fi
 export EDITOR=nano
 
 source ${HOME}/.aliases
-PATH=/cygdrive/c/Program\ Files\ \(x86\)/scala/bin:$PATH
-
