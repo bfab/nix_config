@@ -28,7 +28,7 @@ __ask_and_return() {
     read -p "$PROMPT_STRING"
   fi
 
-  eval $RETURN_PARAM="$REPLY"
+  eval "$RETURN_PARAM=\"$REPLY\""
 }
 ################################
 
@@ -314,10 +314,10 @@ sleep2() {
   done
 }
 
-my_backup() {
- echo "Running   rsync -av --delete --progress \"$1\" \"$2\""
+mirror_folder() {
+  echo "Running   rsync -av --delete --progress \"$1/\" \"$2/\""
   echo ...
-  rsync -av --delete --progress "$1" "$2"
+  rsync -av --delete --progress "$1/" "$2/"
 }
 
 shacheck() {
