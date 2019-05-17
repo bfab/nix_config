@@ -28,7 +28,7 @@ __ask_and_return() {
     read -p "$PROMPT_STRING"
   fi
 
-  eval $RETURN_PARAM="$REPLY"
+  eval "$RETURN_PARAM=\"$REPLY\""
 }
 ################################
 
