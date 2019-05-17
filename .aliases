@@ -416,4 +416,29 @@ check_port () {
     echo Nothing is listening on $PORT
   echo
 }
+
+sanitize() {
+  (( $# > 1 )) || {
+    echo "Consistently replaces string regexes with <sanitized_\$RANDOM> in given file, saving output in <input>.sanitized"
+    echo "String regexes to be replaced cannot contain whitespaces nor double quotes, and are used in a sed expression."
+    echo
+    echo "Params: <input> <space-separated-list-of-words-to-be-replaced>"
+    return 1
+  }
+
+  local DEST="$1.sanitized.$RANDOM"
+  local TEMP="$DEST.tmp"
+
+  cp "$1" "$DEST"
+  shift
+
+  for unsafe in $* ;do
+    cat "$DEST" | sed -e "s\"$unsafe\"<sanitized_$RANDOM>\"g" "$DEST" > "$TEMP"
+    mv "$TEMP" "$DEST"
+  done
+
+  cat "$DEST"
+  rm "$DEST" >/dev/null
+}
+
 ################################
