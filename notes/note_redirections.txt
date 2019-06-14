@@ -1,0 +1,11 @@
+In the following, X stands for either 1 (stdout) or 2 (stderr)
+
+X>&-
+	closes the stream (effectively like redirecting it to /dev/null, except you can't redirect something to a closed stream)
+
+|&
+	abbreviation of   2>&1 |
+	Bash 4+ (and tested on zsh 4.3.11)
+
+&>/dev/null
+	abbreviation of   >/dev/null 2>&1
