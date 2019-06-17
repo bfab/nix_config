@@ -1,7 +1,6 @@
-sudo -i
-
-SRC=/etc/screenrc
-cp $SRC $SRC.fab.bak
+#can be either /etc/screenrc (but you may not have write access to it) or ~/.screenrc
+SRC=~/.screenrc
+cp $SRC $SRC.$(whoami)-$(date +%s).bak
 
 sed -i '/^\s*multiuser\b/d' $SRC
 echo -e "\nmultiuser on" >> $SRC
