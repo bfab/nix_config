@@ -153,6 +153,19 @@ g-cpick-last-to() {
 }
 
 alias t-s='tig status'
+
+diff-these() {
+  local EPOCH=$(date +%s)
+  local TMP_FOLDER="/tmp/diff-these_$EPOCH"
+  mkdir "$TMP_FOLDER"
+  local FILE_1="$TMP_FOLDER/input_1"
+  local FILE_2="$TMP_FOLDER/input_2"
+  local VIM() {
+    vim -c 'set paste' -c 'startinsert' "$1"
+  }
+  VIM "$FILE_1" && VIM "$FILE_2" && g-df --no-index "$FILE_1" "$FILE_2"
+  rm -rf "$TMP_FOLDER"
+}
 ################################
 
 
