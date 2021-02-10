@@ -1,9 +1,7 @@
-# To the extent possible under law, the author(s) have dedicated all 
-# copyright and related and neighboring rights to this software to the 
-# public domain worldwide. This software is distributed without any warranty. 
-# You should have received a copy of the CC0 Public Domain Dedication along 
-# with this software. 
-# If not, see <http://creativecommons.org/publicdomain/zero/1.0/>. 
+export LS_COLORS=cxfxexdxbxegedabaggxad
+export EDITOR=/usr/bin/vim
+export PATH=/Users/fbenigni/java_home/bin:/opt/local/bin:/opt/local/sbin:/Users/fbenigni/bin:/usr/local/bin:$PATH
+export JAVA_HOME=`/usr/libexec/java_home -v 11`
 
 # base-files version 4.2-3
 
