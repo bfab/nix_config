@@ -21,7 +21,7 @@ branch = branch.strip()[11:]
 
 res, err = Popen(['git','diff','--name-status'], stdout=PIPE, stderr=PIPE).communicate()
 err_string = err.decode('utf-8')
-if 'fatal' in err_string:
+if 'Not a git repository' in err_string:
 	sys.exit(0)
 changed_files = [namestat[0] for namestat in res.splitlines()]
 staged_files = [namestat[0] for namestat in Popen(['git','diff', '--staged','--name-status'], stdout=PIPE).communicate()[0].splitlines()]
