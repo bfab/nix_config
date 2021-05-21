@@ -292,9 +292,15 @@ sleep2() {
 }
 
 my_backup() {
-  echo "Running   rsync -av --delete --progress \"$1\" \"$2\""
+  echo "Running   rsync -avP --delete \"$1\" \"$2\""
   echo ...
-  rsync -av --delete --progress "$1" "$2"
+  rsync -avP --delete "$1" "$2"
+}
+
+find_latest() {
+  local FOLDER=${1:-"."}
+  local NUM_RESULTS=${2:-1}
+  find "$FOLDER" -type f -printf '%TY-%Tm-%Td %TH:%TM: %Tz %p\n'| sort -nr | head -n $NUM_RESULTS
 }
 
 shacheck() {
